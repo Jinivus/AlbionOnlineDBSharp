@@ -4,7 +4,7 @@ using System.Text;
 
 namespace AlbionOnlineDB
 {
-    public static class AlbionOnlineDB
+    public static class AlbionOnlineDBInfo
     {
         public static string BaseURL {
             get

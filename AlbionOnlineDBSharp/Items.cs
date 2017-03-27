@@ -9,18 +9,31 @@ namespace AlbionOnlineDB
 {
     public static class Items
     {
-        public async static Task<List<Item>> GetItems()
+        const int CACHE_MINS = 60;
+
+        static DateTime _LastUpdatedItems = DateTime.MinValue;
+        static List<BaseItem> _Items = new List<BaseItem>();
+
+        public async static Task<List<BaseItem>> GetItems(bool useCache = true)
         {
-            var result = await AlbionOnlineDB.BaseURL
-                .AppendPathSegment("items")
-                .GetAsync()
-                .ReceiveJson<List<Item>>();
-            return result;
+            if (_LastUpdatedItems + TimeSpan.FromMinutes(CACHE_MINS) > DateTime.Now)
+            {
+                return _Items;
+            }
+            else
+            {
+                var result = await AlbionOnlineDBInfo.BaseURL
+                    .AppendPathSegment("items")
+                    .GetAsync()
+                    .ReceiveJson<List<BaseItem>>();
+                return result;
+            }
         }
 
         public async static Task<Item> GetItem(string uniqueName)
         {
-            var resultJson = await AlbionOnlineDB.BaseURL
+
+            var resultJson = await AlbionOnlineDBInfo.BaseURL
                 .AppendPathSegment("items")
                 .AppendPathSegment(uniqueName)
                 .GetAsync()
