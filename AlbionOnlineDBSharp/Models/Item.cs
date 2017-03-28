@@ -11,6 +11,7 @@ namespace AlbionOnlineDB.Models
         [DefaultValue(false)]
         [Newtonsoft.Json.JsonProperty(DefaultValueHandling = Newtonsoft.Json.DefaultValueHandling.Populate)]
         public string tier { get; set; }
+        public string weight { get; set; }
         public string maxstacksize { get; set; }
         public string shopcategory { get; set; }
         public string shopsubcategory1 { get; set; }

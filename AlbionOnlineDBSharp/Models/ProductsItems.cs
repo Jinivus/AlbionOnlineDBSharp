@@ -12,7 +12,6 @@ namespace AlbionOnlineDB.Models
         public string destroyable { get; set; }
         public string unlockedtoplace { get; set; }
         public string kind { get; set; }
-        public string weight { get; set; }
         public string unlockedtocraft { get; set; }
         public string tile { get; set; }
         public string prefabname { get; set; }
@@ -58,6 +57,6 @@ namespace AlbionOnlineDB.Models
 
     public class Products
     {
-        public Product product { get; set; }
+        public IEnumerable<Product> product { get; set; }
     }
 }
